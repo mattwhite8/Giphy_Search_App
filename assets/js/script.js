@@ -26,17 +26,43 @@ function callGiphy(search, thisButton){
     url: 'http://api.giphy.com/v1/gifs/search?',
     data: {
       api_key: 'dc6zaTOxFJmzC',
-      q: search
+      q: search,
+      limit: 10
     }
 
   }).done(function(returnData) {
     console.log(thisButton);
-    console.log(returnData.data[0].images.downsized.url);
-    for(i = 0; i < 10; i++){
+    var giphyData = returnData.data;
+
+    for (var i = 0; i < giphyData.length; i++){
+      //console.log(giphyData[i]);
+
+      var stillUrl = giphyData[i].images.fixed_height_still.url;
+      var animatedUrl = giphyData[i].images.fixed_height.url;
+
       var img = document.createElement('img');
-      img.setAttribute('src', returnData.data[i].images.downsized.url);
-      document.getElementById('main').appendChild(img);
+      img.setAttribute('src', stillUrl);
+      img.dataset.state = "still";
+      img.dataset.still = stillUrl;
+      img.dataset.animate = animatedUrl;
+
+      document.getElementById('gif-section').appendChild(img);
+
     }
+
+    var imgs = document.querySelectorAll('img');
+    for(var j = 0; j < imgs.length; j++){
+      imgs[j].addEventListener('click', function(){
+        if(this.dataset.state === 'still'){
+          this.setAttribute('src', this.dataset.animate);
+          this.dataset.state = 'animated';
+        } else {
+          this.setAttribute('src', this.dataset.still);
+          this.dataset.state = 'still';
+        }
+      })
+    }
+
   });
 }
 
