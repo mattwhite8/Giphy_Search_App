@@ -1,4 +1,5 @@
-var arr = ['cat','dog','bird','horse'];
+var startButtonData = ['cat','dog','bird','horse'];
+var buttonData = JSON.parse(localStorage.getItem("buttonResults")) || startButtonData;
 var buttonsDiv = document.getElementById("buttons");
 var searchButton = document.getElementById("searchButton");
 var searchBox = document.getElementById("search");
@@ -6,11 +7,12 @@ var clearButton = document.getElementById("clear");
 var giphyData = JSON.parse(localStorage.getItem("giphyResults")) || [];
 
 function createButtons(){
-  for(var i = 0; i < arr.length; i++){
+
+  for(var i = 0; i < buttonData.length; i++){
     var button = document.createElement('button');
-    var text = document.createTextNode(arr[i]);
+    var text = document.createTextNode(buttonData[i]);
     button.appendChild(text);
-    button.dataset.name = arr[i];
+    button.dataset.name = buttonData[i];
  
     button.addEventListener('click', function(){
       callGiphy(this.dataset.name);
@@ -18,6 +20,7 @@ function createButtons(){
     
     buttonsDiv.appendChild(button);
   }
+
 }
 
 function callGiphy(search){
@@ -76,13 +79,15 @@ $( document ).ready(function(){
   putOnPage();
   
   searchButton.addEventListener("click", function(){
-    arr.push(searchBox.value);
+    buttonData.push(searchBox.value);
+    localStorage.setItem("buttonResults", JSON.stringify(buttonData));
     buttonsDiv.innerHTML = "";
     createButtons();
   })
   
   clearButton.addEventListener("click", function(){
-    buttonsDiv.innerHTML = "";
+    document.getElementById('gif-section').innerHTML = "";
+    localStorage.clear();
   })
   
 });
