@@ -13,6 +13,7 @@ function createButtons(){
     var text = document.createTextNode(buttonData[i]);
     button.appendChild(text);
     button.dataset.name = buttonData[i];
+    button.className = ('custom-button');
  
     button.addEventListener('click', function(){
       callGiphy(this.dataset.name);
@@ -96,6 +97,7 @@ $( document ).ready(function(){
     buttonData.push(searchBox.value);
     localStorage.setItem("buttonResults", JSON.stringify(buttonData));
     buttonsDiv.innerHTML = "";
+    searchBox.value = "";
     createButtons();
   })
   
