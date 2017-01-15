@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+body {
+	background: url('http://www.designveryeasy.com/images/original/Website-Backgrounds-38928.jpg') no-repeat center center fixed;
+  font-family: 'Oswald', sans-serif;  
+}
+
+.thumbnail {
+  background-color: transparent;
+  border: none;
+}
+
 .thumbnail > img {
 	height: 200px;
 	width: 200px;
@@ -21,6 +33,7 @@
   font-size: 16px;
   padding: 7px;
   margin-right: 5px;
+  margin-bottom: 15px;
   border: solid #304e61 3px;
   text-decoration: none;
 }

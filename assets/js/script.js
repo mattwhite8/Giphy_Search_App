@@ -48,28 +48,36 @@ function putOnPage(){
     for (var i = 0; i < giphyData.length; i++){
       var stillUrl = giphyData[i].images.fixed_height_still.url;
       var animatedUrl = giphyData[i].images.fixed_height.url;
+      var rating = giphyData[i].rating;
 
-      var div = document.createElement('div');
+      var divOuter = document.createElement('div');
+      var divInner = document.createElement('div');
+      var divCaption = document.createElement('div');
+      var ratingHeading = document.createElement('h3');
+      var img = document.createElement('img');
 
       if(i === 8){
-        div.className = ('col-xs-12 col-sm-12 col-md-3 col-md-offset-3')
+        divOuter.className = ('col-xs-12 col-sm-12 col-md-3 col-md-offset-3')
       } else{
-        div.className = ('col-xs-12 col-sm-12 col-md-3')
+        divOuter.className = ('col-xs-12 col-sm-12 col-md-3')
       }
       
-      var a = document.createElement('a');
-      a.setAttribute('href', '#');
-      a.className = ('thumbnail');
-      var img = document.createElement('img');
+      divInner.className = ('thumbnail');
+      divCaption.className = ('caption');
+      ratingHeading.className = ('text-center');
+
+      ratingHeading.innerHTML = "Rating: " + rating;
+      divCaption.appendChild(ratingHeading);
+
       img.setAttribute('src', stillUrl);
       img.dataset.state = "still";
       img.dataset.still = stillUrl;
       img.dataset.animate = animatedUrl;
+      divInner.appendChild(img);
+      divInner.appendChild(divCaption);
+      divOuter.appendChild(divInner);
 
-      a.appendChild(img);
-      div.appendChild(a);
-
-      document.getElementById('gif-section').appendChild(div);
+      document.getElementById('gif-section').appendChild(divOuter);
     }
 
     var imgs = document.querySelectorAll('img');
