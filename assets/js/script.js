@@ -101,7 +101,10 @@ $( document ).ready(function(){
   
   clearButton.addEventListener("click", function(){
     document.getElementById('gif-section').innerHTML = "";
+    document.getElementById('buttons').innerHTML = "";
     localStorage.clear();
+    buttonData = ['cat','dog','bird','horse'];
+    createButtons();
   })
   
 });
