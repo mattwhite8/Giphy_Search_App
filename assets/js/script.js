@@ -121,7 +121,7 @@ $( document ).ready(function(){
 
   $("#search").autocomplete({
       source: function(request, response) {
-          $.getJSON("http://suggestqueries.google.com/complete/search?callback=?",
+          $.getJSON("https://suggestqueries.google.com/complete/search?callback=?",
               {
                 "hl":"en", // Language
                 "jsonp":"suggestCallBack", // jsonp callback function name
