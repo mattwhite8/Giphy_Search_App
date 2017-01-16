@@ -2,6 +2,7 @@
 
 body {
 	background: url('http://www.designveryeasy.com/images/original/Website-Backgrounds-38928.jpg') no-repeat center center fixed;
+  background-size: cover;
   font-family: 'Oswald', sans-serif;  
 }
 
